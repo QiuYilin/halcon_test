@@ -220,11 +220,18 @@ void action()
   SetWindowAttr("background_color","black");
   OpenWindow(0,0,512,512,0,"visible","",&hv_WindowHandle);
   HDevWindowStack::Push(hv_WindowHandle);
-  GenBoxObjectModel3d(((((((HTuple(0).Append(0)).Append(0)).Append(0)).Append(0)).Append(0)).Append(0)), 
-      3, 2, 1, &hv_ObjectModel3D);
-  SampleObjectModel3d(hv_ObjectModel3D, "fast", 0.05, HTuple(), HTuple(), &hv_SampledObjectModel3D);
-  visualize_object_model_3d(hv_WindowHandle, hv_SampledObjectModel3D, HTuple(), HTuple(), 
-      HTuple(), HTuple(), HTuple(), HTuple(), HTuple(), &hv_PoseOut);
+  // GenBoxObjectModel3d(((((((HTuple(0).Append(0)).Append(0)).Append(0)).Append(0)).Append(0)).Append(0)), 
+  //     3, 2, 1, &hv_ObjectModel3D);
+  // SampleObjectModel3d(hv_ObjectModel3D, "fast", 0.05, HTuple(), HTuple(), &hv_SampledObjectModel3D);
+  HalconCpp::HTuple  hv_ObjectModel3D1, hv_Status;
+  HalconCpp::ReadObjectModel3d("C:\\Users\\qiuyi\\AppData\\Roaming\\MVTec\\HALCON-23.05-Progress\\examples\\3d_models\\pipe_joint.ply", "m", HalconCpp::HTuple(), HalconCpp::HTuple(), &hv_ObjectModel3D1, &hv_Status);
+  
+  // visualize_object_model_3d(hv_WindowHandle, hv_ObjectModel3D1, HTuple(), HTuple(), 
+  //     HTuple(), HTuple(), HTuple(), HTuple(), HTuple(), &hv_PoseOut);
+  while(1){
+    DispObjectModel3d(hv_WindowHandle, hv_ObjectModel3D1, HTuple(), HTuple(), 
+          HTuple(), HTuple());
+  }
 }
 
 
